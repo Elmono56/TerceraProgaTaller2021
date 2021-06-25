@@ -4,7 +4,6 @@
 import tkinter
 from tkinter import messagebox
 
-
 #funciones aux
 def activarhms(checktimer,entradah,entradam,entradas):
     if checktimer.get() == 1:
@@ -15,7 +14,7 @@ def activarhms(checktimer,entradah,entradam,entradas):
         entradah['state'] = "disable"
         entradam['state'] = "disable"
         entradas['state'] = "disable"
-    
+
 def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono,checktimer,entradah,entradam,entradas,checkderecha,checkizquierda):
 
     gfacil=checkfacil.get()
@@ -53,9 +52,11 @@ def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono
         tiempo=1
     if gtno==1:
         tiempo=2
+        
     ghoras=0
     gminutos=0
     gsegundos=0
+    
     if gttimer==1:
         tiempo=3
         ghoras=entradah.get()
@@ -109,7 +110,6 @@ def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono
         lado=2
 
     listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
-    print(listaconfig)
 
 #gráficos
 
