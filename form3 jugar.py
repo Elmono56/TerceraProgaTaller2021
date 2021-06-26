@@ -8,9 +8,55 @@ from tkinter import messagebox
 
 #gráficos
 
+def facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20):
+    
+    signof1.config(text="<")
+    signof6.config(text="<")
+    signoc2.config(text="^")
+    signoc4.config(text="^")
+    signoc10.config(text="v")
+    signoc13.config(text="v")
+    signoc14.config(text="^")
+    signoc18.config(text="v")
+    signoc19.config(text="v")
+    signoc20.config(text="^")
+    
+
+def medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19):
+
+    signof2.config(text="<")
+    signof3.config(text="<")
+    signof11.config(text=">")
+    signof19.config(text=">")
+    signof20.config(text="<")
+    signoc1.config(text="^")
+    signoc5.config(text="^")
+    signoc8.config(text="v")
+    signoc11.config(text="v")
+    signoc19.config(text="^")
+
+
+def dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20):
+    signof9.config(text=">")
+    signof10.config(text=">")
+    signof11.config(text="<")
+    signof14.config(text="<")
+    signof17.config(text="<")
+    signof18.config(text="<")
+    signof19.config(text=">")
+    signoc1.config(text="v")
+    signoc2.config(text="^")
+    signoc4.config(text="^")
+    signoc5.config(text="^")
+    signoc8.config(text="^")
+    signoc19.config(text="v")
+    signoc20.config(text="^")
+
+
+
 def jugar():
     juego=tkinter.Tk()
-    juego.geometry("1000x700")
+    juego.geometry("900x600")
     juego.title("Juego Futoshiki - Jugar")
 
     blanco=tkinter.Label(juego,text="     ")
@@ -40,25 +86,25 @@ def jugar():
     entrada1=tkinter.Entry(juego,width="6")
     entrada1.grid(row=4,column=5)
 
-    signof1=tkinter.Label(juego,text="<")
+    signof1=tkinter.Label(juego,text="")
     signof1.grid(row=4,column=6)
 
     entrada2=tkinter.Entry(juego,width="6")
     entrada2.grid(row=4,column=7)
 
-    signof2=tkinter.Label(juego,text="<")
+    signof2=tkinter.Label(juego,text="")
     signof2.grid(row=4,column=8)
 
     entrada3=tkinter.Entry(juego,width="6")
     entrada3.grid(row=4,column=9)
 
-    signof3=tkinter.Label(juego,text="<")
+    signof3=tkinter.Label(juego,text="")
     signof3.grid(row=4,column=10)
 
     entrada4=tkinter.Entry(juego,width="6")
     entrada4.grid(row=4,column=11)
 
-    signof4=tkinter.Label(juego,text="<")
+    signof4=tkinter.Label(juego,text="")
     signof4.grid(row=4,column=12)
 
     entrada5=tkinter.Entry(juego,width="6")
@@ -70,19 +116,19 @@ def jugar():
     boton1i=tkinter.Button(juego,text="1",height="2",width="5")
     boton1i.grid(row=4,column=15)
 
-    signoc1=tkinter.Label(juego,text="^")
+    signoc1=tkinter.Label(juego,text="")
     signoc1.grid(row=5,column=5)
 
-    signoc2=tkinter.Label(juego,text="^")
+    signoc2=tkinter.Label(juego,text="")
     signoc2.grid(row=5,column=7)
 
-    signoc3=tkinter.Label(juego,text="^")
+    signoc3=tkinter.Label(juego,text="")
     signoc3.grid(row=5,column=9)
 
-    signoc4=tkinter.Label(juego,text="^")
+    signoc4=tkinter.Label(juego,text="")
     signoc4.grid(row=5,column=11)
 
-    signoc5=tkinter.Label(juego,text="^")
+    signoc5=tkinter.Label(juego,text="")
     signoc5.grid(row=5,column=13)
 
     boton2d=tkinter.Button(juego,text="2",height="2",width="5")
@@ -94,25 +140,25 @@ def jugar():
     entrada6=tkinter.Entry(juego,width="6")
     entrada6.grid(row=6,column=5)
 
-    signof5=tkinter.Label(juego,text="<")
+    signof5=tkinter.Label(juego,text="")
     signof5.grid(row=6,column=6)
 
     entrada7=tkinter.Entry(juego,width="6")
     entrada7.grid(row=6,column=7)
 
-    signof6=tkinter.Label(juego,text="<")
+    signof6=tkinter.Label(juego,text="")
     signof6.grid(row=6,column=8)
 
     entrada8=tkinter.Entry(juego,width="6")
     entrada8.grid(row=6,column=9)
 
-    signof7=tkinter.Label(juego,text="<")
+    signof7=tkinter.Label(juego,text="")
     signof7.grid(row=6,column=10)
 
     entrada9=tkinter.Entry(juego,width="6")
     entrada9.grid(row=6,column=11)
 
-    signof8=tkinter.Label(juego,text="<")
+    signof8=tkinter.Label(juego,text="")
     signof8.grid(row=6,column=12)
 
     entrada10=tkinter.Entry(juego,width="6")
@@ -124,19 +170,19 @@ def jugar():
     boton2i=tkinter.Button(juego,text="2",height="2",width="5")
     boton2i.grid(row=6,column=15)
 
-    signoc6=tkinter.Label(juego,text="^")
+    signoc6=tkinter.Label(juego,text="")
     signoc6.grid(row=7,column=5)
 
-    signoc7=tkinter.Label(juego,text="^")
+    signoc7=tkinter.Label(juego,text="")
     signoc7.grid(row=7,column=7)
 
-    signoc8=tkinter.Label(juego,text="^")
+    signoc8=tkinter.Label(juego,text="")
     signoc8.grid(row=7,column=9)
 
-    signoc9=tkinter.Label(juego,text="^")
+    signoc9=tkinter.Label(juego,text="")
     signoc9.grid(row=7,column=11)
 
-    signoc10=tkinter.Label(juego,text="^")
+    signoc10=tkinter.Label(juego,text="")
     signoc10.grid(row=7,column=13)
 
     boton3d=tkinter.Button(juego,text="3",height="2",width="5")
@@ -145,25 +191,25 @@ def jugar():
     entrada11=tkinter.Entry(juego,width="6")
     entrada11.grid(row=8,column=5)
 
-    signof9=tkinter.Label(juego,text="<")
+    signof9=tkinter.Label(juego,text="")
     signof9.grid(row=8,column=6)
 
     entrada12=tkinter.Entry(juego,width="6")
     entrada12.grid(row=8,column=7)
 
-    signof10=tkinter.Label(juego,text="<")
+    signof10=tkinter.Label(juego,text="")
     signof10.grid(row=8,column=8)
 
     entrada13=tkinter.Entry(juego,width="6")
     entrada13.grid(row=8,column=9)
 
-    signof11=tkinter.Label(juego,text="<")
+    signof11=tkinter.Label(juego,text="")
     signof11.grid(row=8,column=10)
 
     entrada14=tkinter.Entry(juego,width="6")
     entrada14.grid(row=8,column=11)
 
-    signof12=tkinter.Label(juego,text="<")
+    signof12=tkinter.Label(juego,text="")
     signof12.grid(row=8,column=12)
 
     entrada15=tkinter.Entry(juego,width="6")
@@ -175,19 +221,19 @@ def jugar():
     boton3i=tkinter.Button(juego,text="3",height="2",width="5")
     boton3i.grid(row=8,column=15)
 
-    signoc11=tkinter.Label(juego,text="^")
+    signoc11=tkinter.Label(juego,text="")
     signoc11.grid(row=9,column=5)
 
-    signoc12=tkinter.Label(juego,text="^")
+    signoc12=tkinter.Label(juego,text="")
     signoc12.grid(row=9,column=7)
 
-    signoc13=tkinter.Label(juego,text="^")
+    signoc13=tkinter.Label(juego,text="")
     signoc13.grid(row=9,column=9)
 
-    signoc14=tkinter.Label(juego,text="^")
+    signoc14=tkinter.Label(juego,text="")
     signoc14.grid(row=9,column=11)
 
-    signoc15=tkinter.Label(juego,text="^")
+    signoc15=tkinter.Label(juego,text="")
     signoc15.grid(row=9,column=13)
 
     boton4d=tkinter.Button(juego,text="4",height="2",width="5")
@@ -196,25 +242,25 @@ def jugar():
     entrada16=tkinter.Entry(juego,width="6")
     entrada16.grid(row=10,column=5)
 
-    signof13=tkinter.Label(juego,text="<")
+    signof13=tkinter.Label(juego,text="")
     signof13.grid(row=10,column=6)
 
     entrada17=tkinter.Entry(juego,width="6")
     entrada17.grid(row=10,column=7)
 
-    signof14=tkinter.Label(juego,text="<")
+    signof14=tkinter.Label(juego,text="")
     signof14.grid(row=10,column=8)
 
     entrada18=tkinter.Entry(juego,width="6")
     entrada18.grid(row=10,column=9)
 
-    signof15=tkinter.Label(juego,text="<")
+    signof15=tkinter.Label(juego,text="")
     signof15.grid(row=10,column=10)
 
     entrada19=tkinter.Entry(juego,width="6")
     entrada19.grid(row=10,column=11)
 
-    signof16=tkinter.Label(juego,text="<")
+    signof16=tkinter.Label(juego,text="")
     signof16.grid(row=10,column=12)
 
     entrada20=tkinter.Entry(juego,width="6")
@@ -226,19 +272,19 @@ def jugar():
     boton4i=tkinter.Button(juego,text="4",height="2",width="5")
     boton4i.grid(row=10,column=15)
 
-    signoc16=tkinter.Label(juego,text="^")
+    signoc16=tkinter.Label(juego,text="")
     signoc16.grid(row=11,column=5)
 
-    signoc17=tkinter.Label(juego,text="^")
+    signoc17=tkinter.Label(juego,text="")
     signoc17.grid(row=11,column=7)
 
-    signoc18=tkinter.Label(juego,text="^")
+    signoc18=tkinter.Label(juego,text="")
     signoc18.grid(row=11,column=9)
 
-    signoc19=tkinter.Label(juego,text="^")
+    signoc19=tkinter.Label(juego,text="")
     signoc19.grid(row=11,column=11)
 
-    signoc20=tkinter.Label(juego,text="^")
+    signoc20=tkinter.Label(juego,text="")
     signoc20.grid(row=11,column=13)
 
     boton5d=tkinter.Button(juego,text="5",height="2",width="5")
@@ -247,25 +293,25 @@ def jugar():
     entrada21=tkinter.Entry(juego,width="6")
     entrada21.grid(row=12,column=5)
 
-    signof17=tkinter.Label(juego,text="<")
+    signof17=tkinter.Label(juego,text="")
     signof17.grid(row=12,column=6)
 
     entrada22=tkinter.Entry(juego,width="6")
     entrada22.grid(row=12,column=7)
 
-    signof18=tkinter.Label(juego,text="<")
+    signof18=tkinter.Label(juego,text="")
     signof18.grid(row=12,column=8)
 
     entrada23=tkinter.Entry(juego,width="6")
     entrada23.grid(row=12,column=9)
 
-    signof19=tkinter.Label(juego,text="<")
+    signof19=tkinter.Label(juego,text="")
     signof19.grid(row=12,column=10)
 
     entrada24=tkinter.Entry(juego,width="6")
     entrada24.grid(row=12,column=11)
 
-    signof20=tkinter.Label(juego,text="<")
+    signof20=tkinter.Label(juego,text="")
     signof20.grid(row=12,column=12)
 
     entrada25=tkinter.Entry(juego,width="6")
@@ -322,8 +368,9 @@ def jugar():
     cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
     cargarj.grid(row=17,column=11)
 
-
-
+    #facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
+    #medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,
+    dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
 
                   
 jugar()
