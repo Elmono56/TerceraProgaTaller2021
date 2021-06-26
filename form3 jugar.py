@@ -6,6 +6,7 @@ from tkinter import messagebox
 
 #variables globales
 listaconfig=[1, 1, 0, 0, 0, 1]
+#listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
 #funciones aux
 
 #gráficos
@@ -73,16 +74,79 @@ def izquierda(boton1i,boton2i,boton3i,boton4i,boton5i):
     boton5i.config(state="normal")
 
 
-def validaryjugar(difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i):
-    
+def validaryjugar(validar,nombre,difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i):
+
+    global listaconfig
+
+    if len(nombre.get())<10 or len(nombre.get())>20:
+        messagebox.showerror("Error","El largo del nombre debe estar entre 10 y 20 carácteres")
+        return
+
+    if validar.get()==1:
+        
+        dificultad=listaconfig[0]
+        
+        if dificultad==1:
+            difi.config(text="Nivel - Fácil")
+            facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
+
+        elif dificultado==2:
+            difi.config(text="Nivel - Intermedio")
+            medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19)
+
+        else:
+            difi.config(text="Nivel - Difícil")
+            dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
 
 
+        lado=listaconfig[5]
 
+        if lado==1:
+            derecha(boton1d,boton2d,boton3d,boton4d,boton5d)
+
+        else:
+            izquierda(boton1i,boton2i,boton3i,boton4i,boton5i)
+
+    elif validar.get()==0:
+        difi.config(text="Nivel - ")
+        signof1.config(text="")
+        signof2.config(text="")
+        signof3.config(text="")
+        signof6.config(text="")
+        signof9.config(text="")
+        signof10.config(text="")
+        signof11.config(text="")
+        signof14.config(text="")
+        signof17.config(text="")
+        signof18.config(text="")
+        signof20.config(text="")
+        signoc1.config(text="")
+        signoc2.config(text="")
+        signoc4.config(text="")
+        signoc5.config(text="")
+        signoc8.config(text="")
+        signoc10.config(text="")
+        signoc11.config(text="")
+        signoc13.config(text="")
+        signoc14.config(text="")
+        signoc18.config(text="")
+        signoc19.config(text="")
+        signoc20.config(text="")
+        boton1d.config(state="disable")
+        boton2d.config(state="disable")
+        boton3d.config(state="disable")
+        boton4d.config(state="disable")
+        boton5d.config(state="disable")
+        boton1i.config(state="disable")
+        boton2i.config(state="disable")
+        boton3i.config(state="disable")
+        boton4i.config(state="disable")
+        boton5i.config(state="disable")        
 
 
 def jugar():
     juego=tkinter.Tk()
-    juego.geometry("900x600")
+    juego.geometry("950x600")
     juego.title("Juego Futoshiki - Jugar")
 
     blanco=tkinter.Label(juego,text="     ")
@@ -91,7 +155,7 @@ def jugar():
     futo=tkinter.Label(juego,text="FUTOSHIKI",bg="red")
     futo.grid(row=0,column=9)
 
-    difi=tkinter.Label(juego,text="")
+    difi=tkinter.Label(juego,text="Nivel - ")
     difi.grid(row=1,column=9)
 
     diginombre=tkinter.Label(juego,text="Nombre del jugador:")
@@ -101,8 +165,8 @@ def jugar():
     nombre.grid(row=1,column=2)
 
     validar=tkinter.IntVar()
-    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i)])
-    bvalidar.grid(row=3,column=9)
+    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i)])
+    bvalidar.grid(row=1,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=2,column=0)
@@ -397,8 +461,5 @@ def jugar():
 
     cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
     cargarj.grid(row=17,column=11)
-
-    validaryjugar(difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i)
-
                   
 jugar()
