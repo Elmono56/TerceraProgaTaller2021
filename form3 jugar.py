@@ -37,6 +37,7 @@ def medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,sig
 
 
 def dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20):
+    
     signof9.config(text=">")
     signof10.config(text=">")
     signof11.config(text="<")
@@ -51,6 +52,23 @@ def dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc
     signoc8.config(text="^")
     signoc19.config(text="v")
     signoc20.config(text="^")
+
+
+def derecha(boton1d,boton2d,boton3d,boton4d,boton5d):
+    
+    boton1d.config(state="normal")
+    boton2d.config(state="normal")
+    boton3d.config(state="normal")
+    boton4d.config(state="normal")
+    boton5d.config(state="normal")
+
+def izquierda(boton1i,boton2i,boton3i,boton4i,boton5i):
+    
+    boton1i.config(state="normal")
+    boton2i.config(state="normal")
+    boton3i.config(state="normal")
+    boton4i.config(state="normal")
+    boton5i.config(state="normal")
 
 
 
@@ -77,8 +95,8 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=2,column=0)
     
-    boton1d=tkinter.Button(juego,text="1",height="2",width="5")
-    boton1d.grid(row=4,column=3)
+    boton1i=tkinter.Button(juego,text="1",state="disable",height="2",width="5")
+    boton1i.grid(row=4,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=4,column=4)
@@ -113,8 +131,8 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=4,column=14)
 
-    boton1i=tkinter.Button(juego,text="1",height="2",width="5")
-    boton1i.grid(row=4,column=15)
+    boton1d=tkinter.Button(juego,text="1",state="disable",height="2",width="5")
+    boton1d.grid(row=4,column=15)
 
     signoc1=tkinter.Label(juego,text="")
     signoc1.grid(row=5,column=5)
@@ -131,8 +149,8 @@ def jugar():
     signoc5=tkinter.Label(juego,text="")
     signoc5.grid(row=5,column=13)
 
-    boton2d=tkinter.Button(juego,text="2",height="2",width="5")
-    boton2d.grid(row=6,column=3)
+    boton2i=tkinter.Button(juego,text="2",state="disable",height="2",width="5")
+    boton2i.grid(row=6,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=6,column=4)
@@ -167,8 +185,8 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=6,column=14)
 
-    boton2i=tkinter.Button(juego,text="2",height="2",width="5")
-    boton2i.grid(row=6,column=15)
+    boton2d=tkinter.Button(juego,text="2",state="disable",height="2",width="5")
+    boton2d.grid(row=6,column=15)
 
     signoc6=tkinter.Label(juego,text="")
     signoc6.grid(row=7,column=5)
@@ -185,8 +203,8 @@ def jugar():
     signoc10=tkinter.Label(juego,text="")
     signoc10.grid(row=7,column=13)
 
-    boton3d=tkinter.Button(juego,text="3",height="2",width="5")
-    boton3d.grid(row=8,column=3)
+    boton3i=tkinter.Button(juego,text="3",state="disable",height="2",width="5")
+    boton3i.grid(row=8,column=3)
 
     entrada11=tkinter.Entry(juego,width="6")
     entrada11.grid(row=8,column=5)
@@ -218,8 +236,8 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=8,column=14)
 
-    boton3i=tkinter.Button(juego,text="3",height="2",width="5")
-    boton3i.grid(row=8,column=15)
+    boton3d=tkinter.Button(juego,text="3",state="disable",height="2",width="5")
+    boton3d.grid(row=8,column=15)
 
     signoc11=tkinter.Label(juego,text="")
     signoc11.grid(row=9,column=5)
@@ -236,8 +254,8 @@ def jugar():
     signoc15=tkinter.Label(juego,text="")
     signoc15.grid(row=9,column=13)
 
-    boton4d=tkinter.Button(juego,text="4",height="2",width="5")
-    boton4d.grid(row=10,column=3)
+    boton4i=tkinter.Button(juego,text="4",state="disable",height="2",width="5")
+    boton4i.grid(row=10,column=3)
 
     entrada16=tkinter.Entry(juego,width="6")
     entrada16.grid(row=10,column=5)
@@ -269,8 +287,8 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=10,column=14)
 
-    boton4i=tkinter.Button(juego,text="4",height="2",width="5")
-    boton4i.grid(row=10,column=15)
+    boton4d=tkinter.Button(juego,text="4",state="disable",height="2",width="5")
+    boton4d.grid(row=10,column=15)
 
     signoc16=tkinter.Label(juego,text="")
     signoc16.grid(row=11,column=5)
@@ -287,8 +305,8 @@ def jugar():
     signoc20=tkinter.Label(juego,text="")
     signoc20.grid(row=11,column=13)
 
-    boton5d=tkinter.Button(juego,text="5",height="2",width="5")
-    boton5d.grid(row=12,column=3)
+    boton5i=tkinter.Button(juego,text="5",state="disable",height="2",width="5")
+    boton5i.grid(row=12,column=3)
 
     entrada21=tkinter.Entry(juego,width="6")
     entrada21.grid(row=12,column=5)
@@ -320,8 +338,8 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=12,column=14)
 
-    boton5i=tkinter.Button(juego,text="5",height="2",width="5")
-    boton5i.grid(row=12,column=15)
+    boton5d=tkinter.Button(juego,text="5",state="disable",height="2",width="5")
+    boton5d.grid(row=12,column=15)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=13,column=0)
@@ -370,7 +388,8 @@ def jugar():
 
     #facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
     #medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,
-    dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
-
+    #dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
+    #derecha(boton1d,boton2d,boton3d,boton4d,boton5d)
+    izquierda(boton1i,boton2i,boton3i,boton4i,boton5i)
                   
 jugar()
