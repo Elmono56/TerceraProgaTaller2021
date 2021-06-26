@@ -110,7 +110,6 @@ def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono
         lado=2
 
     listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
-    print(listaconfig)
 
 #gráficos
 
