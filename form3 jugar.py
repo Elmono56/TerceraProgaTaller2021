@@ -4,6 +4,8 @@
 import tkinter
 from tkinter import messagebox
 
+#variables globales
+listaconfig=[1, 1, 0, 0, 0, 1]
 #funciones aux
 
 #gráficos
@@ -71,6 +73,12 @@ def izquierda(boton1i,boton2i,boton3i,boton4i,boton5i):
     boton5i.config(state="normal")
 
 
+def validaryjugar(difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i):
+    
+
+
+
+
 
 def jugar():
     juego=tkinter.Tk()
@@ -83,7 +91,7 @@ def jugar():
     futo=tkinter.Label(juego,text="FUTOSHIKI",bg="red")
     futo.grid(row=0,column=9)
 
-    difi=tkinter.Label(juego,text="Dificultad fácil")
+    difi=tkinter.Label(juego,text="")
     difi.grid(row=1,column=9)
 
     diginombre=tkinter.Label(juego,text="Nombre del jugador:")
@@ -91,6 +99,10 @@ def jugar():
 
     nombre=tkinter.Entry(juego)
     nombre.grid(row=1,column=2)
+
+    validar=tkinter.IntVar()
+    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i)])
+    bvalidar.grid(row=3,column=9)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=2,column=0)
@@ -386,10 +398,7 @@ def jugar():
     cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
     cargarj.grid(row=17,column=11)
 
-    #facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
-    #medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,
-    #dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
-    #derecha(boton1d,boton2d,boton3d,boton4d,boton5d)
-    izquierda(boton1i,boton2i,boton3i,boton4i,boton5i)
+    validaryjugar(difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i)
+
                   
 jugar()

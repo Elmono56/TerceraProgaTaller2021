@@ -110,6 +110,7 @@ def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono
         lado=2
 
     listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
+    print(listaconfig)
 
 #gráficos
 
@@ -129,7 +130,7 @@ def configuracion():
     botonfacil.grid(row=2,column=2)
 
     checkmedio=tkinter.IntVar()
-    botonmedio=tkinter.Checkbutton(config, text="Medio",variable=checkmedio, onvalue=1, offvalue=0)
+    botonmedio=tkinter.Checkbutton(config, text="Intermedio",variable=checkmedio, onvalue=1, offvalue=0)
     botonmedio.grid(row=3,column=2)
 
     checkdificil=tkinter.IntVar()
