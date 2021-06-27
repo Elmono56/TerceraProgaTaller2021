@@ -77,7 +77,7 @@ def izquierda(boton1i,boton2i,boton3i,boton4i,boton5i):
     boton5i.config(state="normal")
 
 
-def validaryjugar(validar,nombre,difi,iniciarj):
+def validaryjugar(validar,nombre,difi,iniciarj,cargarj):
 
     global listaconfig
 
@@ -99,12 +99,14 @@ def validaryjugar(validar,nombre,difi,iniciarj):
             difi.config(text="Nivel - Difícil")
 
         iniciarj.config(state="normal")
+        cargarj.config(state="normal")
         
     elif validar.get()==0:
         iniciarj.config(state="disable")
+        cargarj.config(state="disable")
 
 
-def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj):
+def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj):
 
     global listaconfig
 
@@ -134,12 +136,10 @@ def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boto
     borrarjuego.config(state="normal")
     guardarj.config(state="normal")
     iniciarj.config(state="disable")
+    cargarj.config(state="disable")
 
 
-
-
-
-def borrar():
+def fborrarjugada():
 
     global pila
     global datos
@@ -175,6 +175,64 @@ def agregar(cantidad):
     cont=cont+1
 
 
+def terminarjuego(juego):
+
+    siono=messagebox.askyesno("","¿Desea terminar el juego y volver al menú principal?")
+
+    if siono==True:
+        juego.destroy()
+
+    elif siono==False:
+        pass
+
+    else:
+        messagebox.showwarning("Error", "Algo ocurrió mal")
+
+
+def fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25):
+
+    siono=messagebox.askyesno("","¿Desea borrar su avance en este juego?")
+
+    if siono==True:
+        global pila
+        pila=[]
+        global cont
+        cont=0
+
+        ventrada1.set("")
+        ventrada2.set("")
+        ventrada3.set("")
+        ventrada4.set("")
+        ventrada5.set("")
+        ventrada6.set("")
+        ventrada7.set("")
+        ventrada8.set("")
+        ventrada9.set("")
+        ventrada10.set("")
+        ventrada11.set("")
+        ventrada12.set("")
+        ventrada13.set("")
+        ventrada14.set("")
+        ventrada15.set("")
+        ventrada16.set("")
+        ventrada17.set("")
+        ventrada18.set("")
+        ventrada19.set("")
+        ventrada20.set("")
+        ventrada21.set("")
+        ventrada22.set("")
+        ventrada23.set("")
+        ventrada24.set("")
+        ventrada25.set("")
+    
+        
+
+    elif siono==False:
+        pass
+
+    else:
+        messagebox.showwarning("Error", "Algo ocurrió mal")
+    
 
 
 def jugar():
@@ -198,7 +256,7 @@ def jugar():
     nombre.grid(row=1,column=2)
 
     validar=tkinter.IntVar()
-    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,iniciarj)])
+    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,iniciarj,cargarj)])
     bvalidar.grid(row=1,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
@@ -503,7 +561,7 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=13,column=0)
 
-    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj)])
+    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj)])
     iniciarj.grid(row=14,column=5)
 
     global pila
@@ -513,13 +571,13 @@ def jugar():
     global datos
     datos=[ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25]
     
-    borrarjugada=tkinter.Button(juego,text="Borrar\n Jugada",state="disable",bg="cyan",height="3",width="8",command=lambda:[borrar()])
+    borrarjugada=tkinter.Button(juego,text="Borrar\n Jugada",state="disable",bg="cyan",height="3",width="8",command=lambda:[fborrarjugada()])
     borrarjugada.grid(row=14,column=7)
 
-    terminarj=tkinter.Button(juego,text="Terminar\n Juego",state="disable",bg="light green",height="3",width="8")
+    terminarj=tkinter.Button(juego,text="Terminar\n Juego",state="disable",bg="light green",height="3",width="8",command=lambda:[terminarjuego(juego)])
     terminarj.grid(row=14,column=9)
 
-    borrarjuego=tkinter.Button(juego,text="Borrar\n Juego",state="disable",bg="light blue",height="3",width="8")
+    borrarjuego=tkinter.Button(juego,text="Borrar\n Juego",state="disable",bg="light blue",height="3",width="8",command=lambda:[fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25)])
     borrarjuego.grid(row=14,column=11)
 
     top10=tkinter.Button(juego,text="Top\n 10",bg="yellow",height="3",width="7")
@@ -549,7 +607,7 @@ def jugar():
     guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11")
     guardarj.grid(row=17,column=9)
 
-    cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
+    cargarj=tkinter.Button(juego,text="Cargar Juego",state="disable",height="2",width="11")
     cargarj.grid(row=17,column=11)
                   
 jugar()
