@@ -77,7 +77,7 @@ def izquierda(boton1i,boton2i,boton3i,boton4i,boton5i):
     boton5i.config(state="normal")
 
 
-def validaryjugar(validar,nombre,difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i):
+def validaryjugar(validar,nombre,difi,iniciarj):
 
     global listaconfig
 
@@ -91,60 +91,51 @@ def validaryjugar(validar,nombre,difi,signof1,signof2,signof3,signof6,signof9,si
         
         if dificultad==1:
             difi.config(text="Nivel - Fácil")
-            facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
 
         elif dificultado==2:
             difi.config(text="Nivel - Intermedio")
-            medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19)
 
         else:
             difi.config(text="Nivel - Difícil")
-            dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
 
-
-        lado=listaconfig[5]
-
-        if lado==1:
-            derecha(boton1d,boton2d,boton3d,boton4d,boton5d)
-
-        else:
-            izquierda(boton1i,boton2i,boton3i,boton4i,boton5i)
-
+        iniciarj.config(state="normal")
+        
     elif validar.get()==0:
-        difi.config(text="")
-        signof1.config(text="")
-        signof2.config(text="")
-        signof3.config(text="")
-        signof6.config(text="")
-        signof9.config(text="")
-        signof10.config(text="")
-        signof11.config(text="")
-        signof14.config(text="")
-        signof17.config(text="")
-        signof18.config(text="")
-        signof20.config(text="")
-        signoc1.config(text="")
-        signoc2.config(text="")
-        signoc4.config(text="")
-        signoc5.config(text="")
-        signoc8.config(text="")
-        signoc10.config(text="")
-        signoc11.config(text="")
-        signoc13.config(text="")
-        signoc14.config(text="")
-        signoc18.config(text="")
-        signoc19.config(text="")
-        signoc20.config(text="")
-        boton1d.config(state="disable")
-        boton2d.config(state="disable")
-        boton3d.config(state="disable")
-        boton4d.config(state="disable")
-        boton5d.config(state="disable")
-        boton1i.config(state="disable")
-        boton2i.config(state="disable")
-        boton3i.config(state="disable")
-        boton4i.config(state="disable")
-        boton5i.config(state="disable")        
+        iniciarj.config(state="disable")
+
+
+def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20):
+
+    global listaconfig
+
+    dificultad=listaconfig[0]
+        
+    if dificultad==1:
+        facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
+
+    elif dificultado==2:
+        medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19)
+        
+    else:
+        dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
+    
+    lado=listaconfig[5]
+
+    if lado==1:
+        derecha(boton1d,boton2d,boton3d,boton4d,boton5d)
+
+    else:
+        izquierda(boton1i,boton2i,boton3i,boton4i,boton5i)
+
+    nombre.config(state="disable")
+    bvalidar.config(state="disable")
+    borrarjugada.config(state="normal")
+    terminarj.config(state="normal")
+    borrarjuego.config(state="normal")
+    guardarj.config(state="normal")
+
+
+
 
 
 def borrar():
@@ -165,71 +156,18 @@ def borrar():
     del(pila[-1])
 
 
-def uno():
+def agregar(cantidad):
 
     global pila
     global datos
     global cont
 
-    entrada=datos[cont]
-    entrada.set("1")
-    
-    pila=pila+[cont]
-
-    cont=cont+1
-
-    
-
-def dos():
-
-    global pila
-    global datos
-    global cont
+    if cont==25:
+        messagebox.showerror("Error","No se pueden agregar más números, puede borrar la última jugada")
+        return        
 
     entrada=datos[cont]
-    entrada.set("2")
-    
-    pila=pila+[cont]
-
-    cont=cont+1
-
-
-def tres():
-
-    global pila
-    global datos
-    global cont
-
-    entrada=datos[cont]
-    entrada.set("3")
-    
-    pila=pila+[cont]
-
-    cont=cont+1
-
-
-def cuatro():
-
-    global pila
-    global datos
-    global cont
-
-    entrada=datos[cont]
-    entrada.set("4")
-    
-    pila=pila+[cont]
-
-    cont=cont+1
-
-
-def cinco():
-
-    global pila
-    global datos
-    global cont
-
-    entrada=datos[cont]
-    entrada.set("5")
+    entrada.set(cantidad)
     
     pila=pila+[cont]
 
@@ -259,13 +197,13 @@ def jugar():
     nombre.grid(row=1,column=2)
 
     validar=tkinter.IntVar()
-    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i)])
+    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,iniciarj)])
     bvalidar.grid(row=1,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=2,column=0)
     
-    boton1i=tkinter.Button(juego,text="1",state="disable",height="2",width="5",command=lambda:[uno()])
+    boton1i=tkinter.Button(juego,text="1",state="disable",height="2",width="5",command=lambda:[agregar("1")])
     boton1i.grid(row=4,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
@@ -311,7 +249,7 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=4,column=14)
 
-    boton1d=tkinter.Button(juego,text="1",state="disable",height="2",width="5",command=lambda:[uno()])
+    boton1d=tkinter.Button(juego,text="1",state="disable",height="2",width="5",command=lambda:[agregar("1")])
     boton1d.grid(row=4,column=15)
 
     signoc1=tkinter.Label(juego,text="")
@@ -329,7 +267,7 @@ def jugar():
     signoc5=tkinter.Label(juego,text="")
     signoc5.grid(row=5,column=13)
 
-    boton2i=tkinter.Button(juego,text="2",state="disable",height="2",width="5",command=lambda:[dos()])
+    boton2i=tkinter.Button(juego,text="2",state="disable",height="2",width="5",command=lambda:[agregar("2")])
     boton2i.grid(row=6,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
@@ -375,7 +313,7 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=6,column=14)
 
-    boton2d=tkinter.Button(juego,text="2",state="disable",height="2",width="5",command=lambda:[dos()])
+    boton2d=tkinter.Button(juego,text="2",state="disable",height="2",width="5",command=lambda:[agregar("2")])
     boton2d.grid(row=6,column=15)
 
     signoc6=tkinter.Label(juego,text="")
@@ -393,7 +331,7 @@ def jugar():
     signoc10=tkinter.Label(juego,text="")
     signoc10.grid(row=7,column=13)
 
-    boton3i=tkinter.Button(juego,text="3",state="disable",height="2",width="5",command=lambda:[tres()])
+    boton3i=tkinter.Button(juego,text="3",state="disable",height="2",width="5",command=lambda:[agregar("3")])
     boton3i.grid(row=8,column=3)
 
     ventrada11=tkinter.StringVar()
@@ -436,7 +374,7 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=8,column=14)
 
-    boton3d=tkinter.Button(juego,text="3",state="disable",height="2",width="5",command=lambda:[tres()])
+    boton3d=tkinter.Button(juego,text="3",state="disable",height="2",width="5",command=lambda:[agregar("3")])
     boton3d.grid(row=8,column=15)
 
     signoc11=tkinter.Label(juego,text="")
@@ -454,7 +392,7 @@ def jugar():
     signoc15=tkinter.Label(juego,text="")
     signoc15.grid(row=9,column=13)
 
-    boton4i=tkinter.Button(juego,text="4",state="disable",height="2",width="5",command=lambda:[cuatro()])
+    boton4i=tkinter.Button(juego,text="4",state="disable",height="2",width="5",command=lambda:[agregar("4")])
     boton4i.grid(row=10,column=3)
 
     ventrada16=tkinter.StringVar()
@@ -497,7 +435,7 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=10,column=14)
 
-    boton4d=tkinter.Button(juego,text="4",state="disable",height="2",width="5",command=lambda:[cuatro()])
+    boton4d=tkinter.Button(juego,text="4",state="disable",height="2",width="5",command=lambda:[agregar("4")])
     boton4d.grid(row=10,column=15)
 
     signoc16=tkinter.Label(juego,text="")
@@ -515,7 +453,7 @@ def jugar():
     signoc20=tkinter.Label(juego,text="")
     signoc20.grid(row=11,column=13)
 
-    boton5i=tkinter.Button(juego,text="5",state="disable",height="2",width="5",command=lambda:[cinco()])
+    boton5i=tkinter.Button(juego,text="5",state="disable",height="2",width="5",command=lambda:[agregar("5")])
     boton5i.grid(row=12,column=3)
 
     ventrada21=tkinter.StringVar()
@@ -558,27 +496,29 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=12,column=14)
 
-    boton5d=tkinter.Button(juego,text="5",state="disable",height="2",width="5",command=lambda:[cinco()])
+    boton5d=tkinter.Button(juego,text="5",state="disable",height="2",width="5",command=lambda:[agregar("5")])
     boton5d.grid(row=12,column=15)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=13,column=0)
 
-    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",bg="red",height="3",width="8")
+    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20)])
     iniciarj.grid(row=14,column=5)
 
     global pila
     pila=[]
+    global cont
+    cont=0
     global datos
     datos=[ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25]
     
-    borrarjugada=tkinter.Button(juego,text="Borrar\n Jugada",bg="cyan",height="3",width="8",command=lambda:[borrar()])
+    borrarjugada=tkinter.Button(juego,text="Borrar\n Jugada",state="disable",bg="cyan",height="3",width="8",command=lambda:[borrar()])
     borrarjugada.grid(row=14,column=7)
 
-    terminarj=tkinter.Button(juego,text="Terminar\n Juego",bg="green",height="3",width="8")
+    terminarj=tkinter.Button(juego,text="Terminar\n Juego",state="disable",bg="light green",height="3",width="8")
     terminarj.grid(row=14,column=9)
 
-    borrarjuego=tkinter.Button(juego,text="Borrar\n Juego",bg="light blue",height="3",width="8")
+    borrarjuego=tkinter.Button(juego,text="Borrar\n Juego",state="disable",bg="light blue",height="3",width="8")
     borrarjuego.grid(row=14,column=11)
 
     top10=tkinter.Button(juego,text="Top\n 10",bg="yellow",height="3",width="7")
@@ -605,7 +545,7 @@ def jugar():
     s=tkinter.Label(juego,text=00)
     s.grid(row=17,column=3)
 
-    guardarj=tkinter.Button(juego,text="Guardar Juego",height="2",width="11")
+    guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11")
     guardarj.grid(row=17,column=9)
 
     cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
