@@ -5,7 +5,7 @@ import tkinter
 from tkinter import messagebox
 
 #variables globales
-listaconfig=[1, 1, 0, 0, 0, 1]
+listaconfig=[3, 1, 0,0, 0, 2]
 pila=[]
 datos=[]
 cont=0
@@ -81,7 +81,7 @@ def validaryjugar(validar,nombre,difi,iniciarj):
 
     global listaconfig
 
-    if len(nombre.get())<10 or len(nombre.get())>20:
+    if len(nombre.get())<0 or len(nombre.get())>20:
         messagebox.showerror("Error","El largo del nombre debe estar entre 10 y 20 carácteres")
         return
 
@@ -92,7 +92,7 @@ def validaryjugar(validar,nombre,difi,iniciarj):
         if dificultad==1:
             difi.config(text="Nivel - Fácil")
 
-        elif dificultado==2:
+        elif dificultad==2:
             difi.config(text="Nivel - Intermedio")
 
         else:
@@ -104,7 +104,7 @@ def validaryjugar(validar,nombre,difi,iniciarj):
         iniciarj.config(state="disable")
 
 
-def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20):
+def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj):
 
     global listaconfig
 
@@ -113,7 +113,7 @@ def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boto
     if dificultad==1:
         facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
 
-    elif dificultado==2:
+    elif dificultad==2:
         medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19)
         
     else:
@@ -133,6 +133,7 @@ def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boto
     terminarj.config(state="normal")
     borrarjuego.config(state="normal")
     guardarj.config(state="normal")
+    iniciarj.config(state="disable")
 
 
 
@@ -502,7 +503,7 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=13,column=0)
 
-    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20)])
+    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj)])
     iniciarj.grid(row=14,column=5)
 
     global pila
