@@ -3,9 +3,10 @@
 #librerías
 import tkinter
 from tkinter import messagebox
+import time
 
 #variables globales
-listaconfig=[3, 1, 0,0, 0, 2]
+listaconfig=[3, 1, 0, 0, 45, 2]
 pila=[]
 datos=[]
 cont=0
@@ -105,6 +106,51 @@ def validaryjugar(validar,nombre,difi,iniciarj,cargarj):
         iniciarj.config(state="disable")
         cargarj.config(state="disable")
 
+
+def temporizador(h,m,s,juego):
+    global listaconfig
+    horaso=listaconfig[2]
+    minutoso=listaconfig[3]
+    segundoso=listaconfig[4]
+
+    ttotal = horaso*3600+ minutoso*60 + segundoso
+
+    if ttotal!=0:
+        
+        while ttotal!=-1:
+
+            segundos=ttotal%60
+            minutos=ttotal//60
+            horas=0
+            if minutos>60:
+                horas=minutos//60
+                minutos=minutos%60
+            
+            s.config(text=segundos)
+            m.config(text=minutos)
+            h.config(text=horas)
+
+            juego.update()
+            time.sleep(1)
+          
+            if ttotal==0:
+                s.config(text="ACABADO")
+                m.config(text="HA")
+                h.config(text="SE")
+
+                continuar=messagebox.askyesno("","Se ha acabado el tiempo, ¿desea continuar el juego?")
+
+                if continuar==True:
+                    pass
+                
+                elif continuar==False:
+                     juego.destroy()
+
+                else:
+                    messagebox.showwarning("Error", "Algo ocurrió mal")
+                    
+            ttotal=ttotal-1
+    
 
 def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj):
 
@@ -561,7 +607,7 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=13,column=0)
 
-    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj)])
+    iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj),temporizador(h,m,s,juego)])
     iniciarj.grid(row=14,column=5)
 
     global pila
@@ -586,14 +632,14 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=15,column=0)
 
-    horas=tkinter.Label(juego,text="Horas")
-    horas.grid(row=16,column=1)
+    lhoras=tkinter.Label(juego,text="Horas")
+    lhoras.grid(row=16,column=1)
 
-    minutos=tkinter.Label(juego,text="Minutos")
-    minutos.grid(row=16,column=2)
+    lminutos=tkinter.Label(juego,text="Minutos")
+    lminutos.grid(row=16,column=2)
 
-    segundos=tkinter.Label(juego,text="Segundos")
-    segundos.grid(row=16,column=3)
+    lsegundos=tkinter.Label(juego,text="Segundos")
+    lsegundos.grid(row=16,column=3)
 
     h=tkinter.Label(juego,text=00)
     h.grid(row=17,column=1)
