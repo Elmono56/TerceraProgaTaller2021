@@ -6,10 +6,11 @@ from tkinter import messagebox
 import time
 
 #variables globales
-listaconfig=[3, 1, 0, 0, 0, 2]
+listaconfig=[3, 3, 0, 15, 15, 1]
 pila=[]
 datos=[]
 cont=0
+tiempocorriendo=True
 #listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
 #funciones aux
 
@@ -78,17 +79,18 @@ def izquierda(boton1i,boton2i,boton3i,boton4i,boton5i):
     boton5i.config(state="normal")
 
 
-def validaryjugar(validar,nombre,difi,iniciarj,cargarj):
+def validaryjugar(validar,nombre,difi,iniciarj,cargarj,lhoras,lminutos,lsegundos,h,m,s):
 
     global listaconfig
 
-    if len(nombre.get())<0 or len(nombre.get())>20:
-        messagebox.showerror("Error","El largo del nombre debe estar entre 10 y 20 carácteres")
+    if len(nombre.get())<1 or len(nombre.get())>20:
+        messagebox.showerror("Error","El largo del nombre debe estar entre 1 y 20 carácteres")
         return
 
     if validar.get()==1:
         
         dificultad=listaconfig[0]
+        tiempo=listaconfig[1]
         
         if dificultad==1:
             difi.config(text="Nivel - Fácil")
@@ -101,23 +103,59 @@ def validaryjugar(validar,nombre,difi,iniciarj,cargarj):
 
         iniciarj.config(state="normal")
         cargarj.config(state="normal")
+
+        if tiempo!=2:
+            lhoras.config(text="Horas")
+            lminutos.config(text="Minutos")
+            lsegundos.config(text="Segundos")
+
+            if tiempo==1:
+                h.config(text="00")
+                m.config(text="00")
+                s.config(text="00")
+            else:
+                tiempo=listaconfig[1]
+                horaso=listaconfig[2]
+                minutoso=listaconfig[3]
+                segundoso=listaconfig[4]
+
+                ttotal = horaso*3600+ minutoso*60 + segundoso
+
+                segundos=ttotal%60
+                minutos=ttotal//60
+                horas=0
+                if minutos>60:
+                    horas=minutos//60
+                    minutos=minutos%60
+                    
+                h.config(text=horas)
+                m.config(text=minutos)
+                s.config(text=segundos)
+            
         
     elif validar.get()==0:
         iniciarj.config(state="disable")
         cargarj.config(state="disable")
+        lhoras.config(text="")
+        lminutos.config(text="")
+        lsegundos.config(text="")
+        h.config(text="")
+        m.config(text="")
+        s.config(text="")
 
 
 def temporizador(h,m,s,juego):
     global listaconfig
+    global tiempocorriendo
     tiempo=listaconfig[1]
     horaso=listaconfig[2]
     minutoso=listaconfig[3]
     segundoso=listaconfig[4]
 
     ttotal = horaso*3600+ minutoso*60 + segundoso
+    cttotal=ttotal
 
-    if tiempo==3:
-        
+    while tiempocorriendo==True and tiempo==3:
         while ttotal!=-1:
 
             segundos=ttotal%60
@@ -142,35 +180,35 @@ def temporizador(h,m,s,juego):
                 continuar=messagebox.askyesno("","Se ha acabado el tiempo, ¿desea continuar el juego?")
 
                 if continuar==True:
-                    pass
+                    tiempo=1
                 
                 elif continuar==False:
-                     juego.destroy()
+                    tiempocorriendo=False
+                    juego.destroy()
 
                 else:
                     messagebox.showwarning("Error", "Algo ocurrió mal")
                     
             ttotal=ttotal-1
 
-    elif tiempo==1:
+    while tiempocorriendo==True and tiempo==1:
         
-            while True:
-                
-                segundos=ttotal%60
-                minutos=ttotal//60
-                horas=0
-                if minutos>60:
-                    horas=minutos//60
-                    minutos=minutos%60
-                
-                s.config(text=segundos)
-                m.config(text=minutos)
-                h.config(text=horas)
+        segundos=cttotal%60
+        minutos=cttotal//60
+        horas=0
+        if minutos>60:
+            horas=minutos//60
+            minutos=minutos%60
+        
+        s.config(text=segundos)
+        m.config(text=minutos)
+        h.config(text=horas)
 
-                juego.update()
-                time.sleep(1)
+        juego.update()
+        time.sleep(1)
 
-                ttotal=ttotal+1
+        cttotal=cttotal+1
+            
 
 def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj):
 
@@ -246,6 +284,8 @@ def terminarjuego(juego):
     siono=messagebox.askyesno("","¿Desea terminar el juego y volver al menú principal?")
 
     if siono==True:
+        global tiempocorriendo
+        tiempocorriendo=False
         juego.destroy()
 
     elif siono==False:
@@ -310,6 +350,8 @@ def jugar():
     pila=[]
     global cont
     cont=0
+    global tiempocorriendo
+    tiempocorriendo=True
     
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=0,column=0)
@@ -327,7 +369,7 @@ def jugar():
     nombre.grid(row=1,column=2)
 
     validar=tkinter.IntVar()
-    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,iniciarj,cargarj)])
+    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,iniciarj,cargarj,lhoras,lminutos,lsegundos,h,m,s)])
     bvalidar.grid(row=1,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
@@ -653,28 +695,28 @@ def jugar():
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=15,column=0)
 
-    lhoras=tkinter.Label(juego,text="Horas")
+    lhoras=tkinter.Label(juego,text="")
     lhoras.grid(row=16,column=1)
 
-    lminutos=tkinter.Label(juego,text="Minutos")
+    lminutos=tkinter.Label(juego,text="")
     lminutos.grid(row=16,column=2)
 
-    lsegundos=tkinter.Label(juego,text="Segundos")
+    lsegundos=tkinter.Label(juego,text="")
     lsegundos.grid(row=16,column=3)
 
-    h=tkinter.Label(juego,text=00)
+    h=tkinter.Label(juego,text="")
     h.grid(row=17,column=1)
 
-    m=tkinter.Label(juego,text=00)
+    m=tkinter.Label(juego,text="")
     m.grid(row=17,column=2)
 
-    s=tkinter.Label(juego,text=00)
+    s=tkinter.Label(juego,text="")
     s.grid(row=17,column=3)
 
     guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11")
     guardarj.grid(row=17,column=9)
 
-    cargarj=tkinter.Button(juego,text="Cargar Juego",state="disable",height="2",width="11")
+    cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
     cargarj.grid(row=17,column=11)
                   
 jugar()

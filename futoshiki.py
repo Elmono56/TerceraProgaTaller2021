@@ -2,6 +2,7 @@
 import tkinter
 from tkinter import messagebox
 import time
+import webbrowser
 
 #variables globales
 
@@ -17,26 +18,26 @@ def menup():
     blanco=tkinter.Label(inicio,text="     ")
     blanco.grid(row=0,column=0)
 
-    irajugar=tkinter.Button(inicio,text="Jugar",height="3",width="11",command=lambda:[inicio.destroy()])
+    irajugar=tkinter.Button(inicio,text="Jugar",height="3",width="11",command=lambda:[jugar(),inicio.destroy()])
     irajugar.grid(row=1,column=1)
 
     blanco=tkinter.Label(inicio,text="     ")
     blanco.grid(row=1,column=2)
 
-    configurar=tkinter.Button(inicio,text="Configuración",height="3",width="11",command=lambda:[inicio.destroy()])
+    configurar=tkinter.Button(inicio,text="Configuración",height="3",width="11",command=lambda:[configuracion(),inicio.destroy()])
     configurar.grid(row=1,column=3)
 
     blanco=tkinter.Label(inicio,text="     ")
     blanco.grid(row=1,column=4)
 
-    ayuda=tkinter.Button(inicio,text="Ayuda",height="3",width="11",command=lambda:[inicio.destroy()])
-    ayuda.grid(row=1,column=5)
+    bayuda=tkinter.Button(inicio,text="Ayuda",height="3",width="11",command=lambda:[ayuda()])
+    bayuda.grid(row=1,column=5)
 
     blanco=tkinter.Label(inicio,text="     ")
     blanco.grid(row=1,column=6)
 
-    acercade=tkinter.Button(inicio,text="Acerca de",height="3",width="11",command=lambda:[inicio.destroy()])
-    acercade.grid(row=1,column=7)
+    bacercade=tkinter.Button(inicio,text="Acerca de",height="3",width="11",command=lambda:[acercade()])
+    bacercade.grid(row=1,column=7)
 
 
 #gráficos menú configuración
@@ -498,4 +499,20 @@ def jugar():
     cargarj.grid(row=17,column=11)
 
 
+#Acerca de
+def acercade():
+    messagebox.showinfo("Acerca del programa","Juego Futoshiki\n Versión: 1.4.3\n Fecha de creación: 15-06-2021\n Desarrollador: Jose Pablo Hidalgo Navarro")
+
+#Ayuda
+def ayuda():
+    archivo="manual_de_usuario_fusoshiki.pdf"
+    webbrowser.open_new(archivo)
+
 #funciones auxiliares
+
+
+
+
+
+
+menup()
