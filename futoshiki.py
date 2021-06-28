@@ -505,7 +505,7 @@ def acercade():
 
 #Ayuda
 def ayuda():
-    archivo="manual_de_usuario_fusoshiki.pdf"
+    archivo="manual_de_usuario_futoshiki.pdf"
     webbrowser.open_new(archivo)
 
 #funciones auxiliares
