@@ -306,6 +306,11 @@ def jugar():
     juego.geometry("950x600")
     juego.title("Juego Futoshiki - Jugar")
 
+    global pila
+    pila=[]
+    global cont
+    cont=0
+    
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=0,column=0)
 
@@ -630,10 +635,6 @@ def jugar():
     iniciarj=tkinter.Button(juego,text="Iniciar\n Juego",state="disable",bg="red",height="3",width="8",command=lambda:[iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj),temporizador(h,m,s,juego)])
     iniciarj.grid(row=14,column=5)
 
-    global pila
-    pila=[]
-    global cont
-    cont=0
     global datos
     datos=[ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25]
     
