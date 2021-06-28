@@ -339,7 +339,8 @@ def fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ven
     else:
         messagebox.showwarning("Error", "Algo ocurrió mal")
     
-
+def top():
+    messagebox.showerror("Error","Lo sentimos, estamos teniendo problemas con el servidor")
 
 def jugar():
     juego=tkinter.Tk()
@@ -689,7 +690,7 @@ def jugar():
     borrarjuego=tkinter.Button(juego,text="Borrar\n Juego",state="disable",bg="light blue",height="3",width="8",command=lambda:[fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25)])
     borrarjuego.grid(row=14,column=11)
 
-    top10=tkinter.Button(juego,text="Top\n 10",bg="yellow",height="3",width="7")
+    top10=tkinter.Button(juego,text="Top\n 10",bg="yellow",height="3",width="7",command=lambda:[top()])
     top10.grid(row=14,column=13)
 
     blanco=tkinter.Label(juego,text="     ")
