@@ -895,6 +895,46 @@ def agregar(cantidad):
 
     cont=cont+1
 
+    global listaconfig
+
+    dificultad=listaconfig[0]
+
+    if dificultad==1:
+        global solucionf
+
+        largo=len(pila)
+        for valor in range(0,largo):
+            if solucionf[valor]!=pila[valor]:
+                messagebox.showerror("Pista","El último dígito ingresado está incorrecto")
+                return
+
+        if largo==25:
+            messagebox.showinfo("","FELICIDADES, HAS GANADO")
+            
+        
+    elif dificultad==2:
+        global solucionm
+
+        largo=len(pila)
+        for valor in range(0,largo):
+            if solucionm[valor]!=pila[valor]:
+                messagebox.showerror("Pista","El último dígito ingresado está incorrecto")
+                return
+
+        if largo==25:
+            messagebox.showinfo("","FELICIDADES, HAS GANADO")
+        
+    else:
+        global soluciond
+        
+        largo=len(pila)
+        for valor in range(0,largo):
+            if soluciond[valor]!=pila[valor]:
+                messagebox.showerror("Pista","El último dígito ingresado está incorrecto")
+                return
+
+        if largo==25:
+            messagebox.showinfo("","FELICIDADES, HAS GANADO")
 
 def terminarjuego(juego):
 
