@@ -11,7 +11,11 @@ listaconfig=[1, 1, 0, 0, 0, 1]
 pila=[]
 datos=[]
 cont=0
+partida=listaconfig[:]
 tiempocorriendo=True
+solucionf=[2,3,4,1,5,1,4,5,3,2,5,2,3,4,1,4,1,2,5,3,3,5,1,2,3]
+solucionm=[2,3,4,5,1,5,1,3,4,2,4,5,2,1,3,3,4,1,2,5,1,2,5,3,4]
+soluciond=[5,4,3,1,2,3,5,1,2,4,4,3,2,5,1,2,1,5,4,3,1,2,4,3,5]
 
 #################################################################################
 #gráficos menú de inicio
@@ -500,7 +504,7 @@ def jugar():
     s=tkinter.Label(juego,text="")
     s.grid(row=17,column=3)
 
-    guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11",command=lambda:[fguardarj(entrada)])
+    guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11",command=lambda:[fguardarj(nombre)])
     guardarj.grid(row=17,column=9)
 
     cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11",command=lambda:[fcargarf(nombrev,iniciarj,difi,lhoras,lminutos,lsegundos,h,m,s,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20)])
@@ -887,7 +891,7 @@ def agregar(cantidad):
     entrada=datos[cont]
     entrada.set(cantidad)
     
-    pila=pila+[cont]
+    pila=pila+[cantidad]
 
     cont=cont+1
 
@@ -996,7 +1000,7 @@ def fcargarf(nombrev,iniciarj,difi,lhoras,lminutos,lsegundos,h,m,s,signof1,signo
 
     cont=partida[7]
 
-    poner=partida[8:]
+    pila=partida[8:]
 
     nombrev.set(dnombre)
     
@@ -1005,7 +1009,7 @@ def fcargarf(nombrev,iniciarj,difi,lhoras,lminutos,lsegundos,h,m,s,signof1,signo
     while copia!=cont:
         
         espacio=datos[copia]
-        numero=poner[copia]
+        numero=pila[copia]
         espacio.set(numero)
         copia=copia+1
 
