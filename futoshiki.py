@@ -18,6 +18,10 @@ solucionf=["2","3","4","1","5","1","4","5","3","2","5","2","3","4","1","4","1","
 solucionm=["2","3","4","5","1","5","1","3","4","2","4","5","2","1","3","3","4","1","2","5","1","2","5","3","4"]
 soluciond=["5","4","3","1","2","3","5","1","2","4","4","3","2","5","1","2","1","5","4","3","1","2","4","3","5"]
 
+archivoc=open("futoshiki2021configuración.dat","a")
+archivoc.write("[1, 1, 0, 0, 0, 1]")
+archivoc.close()
+
 #################################################################################
 #gráficos menú de inicio
 def menup():
@@ -629,7 +633,15 @@ def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono
     global listaconfig
     
     listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
+
+    plistaconfig=str([dificultad,tiempo,ghoras,gminutos,gsegundos,lado])
+    
     messagebox.showinfo("","La configuración ha sido guardada exitosamente")
+    
+    archivoc=open("futoshiki2021configuración.dat","w")
+    archivoc.write(plistaconfig)
+    archivoc.close()
+
     config.destroy()
     menup()
 
@@ -912,8 +924,6 @@ def agregar(cantidad):
                 return
 
         if largo==25:
-            global tiempocorriendo
-            tiempocorriendo=False
             messagebox.showinfo("EXCELENTE","JUEGO TERMINADO CON ÉXITO")
             
         
@@ -927,8 +937,6 @@ def agregar(cantidad):
                 return
 
         if largo==25:
-            global tiempocorriendo
-            tiempocorriendo=False
             messagebox.showinfo("EXCELENTE","JUEGO TERMINADO CON ÉXITO")
         
     else:
@@ -941,9 +949,6 @@ def agregar(cantidad):
                 return
 
         if largo==25:
-            global tiempocorriendo
-            tiempocorriendo=False
-            
             messagebox.showinfo("EXCELENTE","JUEGO TERMINADO CON ÉXITO")
 
 def terminarjuego(juego):
