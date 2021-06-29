@@ -23,13 +23,13 @@ def menup():
     blanco=tkinter.Label(inicio,text="     ")
     blanco.grid(row=0,column=0)
 
-    irajugar=tkinter.Button(inicio,text="Jugar",height="3",width="11",command=lambda:[jugar(),inicio.destroy()])
+    irajugar=tkinter.Button(inicio,text="Jugar",height="3",width="11",command=lambda:[inicio.destroy(),jugar()])
     irajugar.grid(row=1,column=1)
 
     blanco=tkinter.Label(inicio,text="     ")
     blanco.grid(row=1,column=2)
 
-    configurar=tkinter.Button(inicio,text="Configuración",height="3",width="11",command=lambda:[configuracion(),inicio.destroy()])
+    configurar=tkinter.Button(inicio,text="Configuración",height="3",width="11",command=lambda:[inicio.destroy(),configuracion()])
     configurar.grid(row=1,column=3)
 
     blanco=tkinter.Label(inicio,text="     ")
@@ -122,7 +122,7 @@ def configuracion():
     blanco=tkinter.Label(config,text="     ")
     blanco.grid(row=7,column=0)
 
-    guardarc=tkinter.Button(config,text="Guardar configuración",height="2",width="20",command=lambda:[guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono,checktimer,entradah,entradam,entradas,checkderecha,checkizquierda)])
+    guardarc=tkinter.Button(config,text="Guardar configuración",height="2",width="20",command=lambda:[guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono,checktimer,entradah,entradam,entradas,checkderecha,checkizquierda,config)])
     guardarc.grid(row=8,column=8)
 
 
@@ -527,7 +527,7 @@ def activarhms(checktimer,entradah,entradam,entradas):
         entradam['state'] = "disable"
         entradas['state'] = "disable"
 
-def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono,checktimer,entradah,entradam,entradas,checkderecha,checkizquierda):
+def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono,checktimer,entradah,entradam,entradas,checkderecha,checkizquierda,config):
 
     gfacil=checkfacil.get()
     gmedio=checkmedio.get()
@@ -620,9 +620,12 @@ def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono
         lado=1
     if gizquierda==1:
         lado=2
-
     global listaconfig
+    
     listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
+    messagebox.showinfo("","La configuración ha sido guardada exitosamente")
+    config.destroy()
+    menup()
 
 def facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20):
     
@@ -895,6 +898,7 @@ def terminarjuego(juego):
         global tiempocorriendo
         tiempocorriendo=False
         juego.destroy()
+        menup()
 
     elif siono==False:
         pass
@@ -949,7 +953,6 @@ def fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ven
     
 def top():
     messagebox.showerror("Error","Lo sentimos, estamos teniendo problemas con el servidor")
-
 
 
 
