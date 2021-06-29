@@ -3,6 +3,7 @@
 import tkinter
 from tkinter import messagebox
 import time
+import random
 import webbrowser
 
 #################################################################################
@@ -13,9 +14,9 @@ datos=[]
 cont=0
 partida=listaconfig[:]
 tiempocorriendo=True
-solucionf=[2,3,4,1,5,1,4,5,3,2,5,2,3,4,1,4,1,2,5,3,3,5,1,2,3]
-solucionm=[2,3,4,5,1,5,1,3,4,2,4,5,2,1,3,3,4,1,2,5,1,2,5,3,4]
-soluciond=[5,4,3,1,2,3,5,1,2,4,4,3,2,5,1,2,1,5,4,3,1,2,4,3,5]
+solucionf=["2","3","4","1","5","1","4","5","3","2","5","2","3","4","1","4","1","2","5","3","3","5","1","2","4"]
+solucionm=["2","3","4","5","1","5","1","3","4","2","4","5","2","1","3","3","4","1","2","5","1","2","5","3","4"]
+soluciond=["5","4","3","1","2","3","5","1","2","4","4","3","2","5","1","2","1","5","4","3","1","2","4","3","5"]
 
 #################################################################################
 #gráficos menú de inicio
@@ -858,6 +859,8 @@ def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boto
     guardarj.config(state="normal")
     iniciarj.config(state="disable")
     cargarj.config(state="disable")
+    global tiempocorriendo
+    tiempocorriendo=True
 
 
 def fborrarjugada():
@@ -909,7 +912,9 @@ def agregar(cantidad):
                 return
 
         if largo==25:
-            messagebox.showinfo("","FELICIDADES, HAS GANADO")
+            global tiempocorriendo
+            tiempocorriendo=False
+            messagebox.showinfo("EXCELENTE","JUEGO TERMINADO CON ÉXITO")
             
         
     elif dificultad==2:
@@ -922,7 +927,9 @@ def agregar(cantidad):
                 return
 
         if largo==25:
-            messagebox.showinfo("","FELICIDADES, HAS GANADO")
+            global tiempocorriendo
+            tiempocorriendo=False
+            messagebox.showinfo("EXCELENTE","JUEGO TERMINADO CON ÉXITO")
         
     else:
         global soluciond
@@ -934,7 +941,10 @@ def agregar(cantidad):
                 return
 
         if largo==25:
-            messagebox.showinfo("","FELICIDADES, HAS GANADO")
+            global tiempocorriendo
+            tiempocorriendo=False
+            
+            messagebox.showinfo("EXCELENTE","JUEGO TERMINADO CON ÉXITO")
 
 def terminarjuego(juego):
 
