@@ -7,7 +7,11 @@ import webbrowser
 
 #################################################################################
 #variables globales
-
+listaconfig=[1, 1, 0, 0, 0, 1]
+pila=[]
+datos=[]
+cont=0
+tiempocorriendo=True
 
 #################################################################################
 #gráficos menú de inicio
