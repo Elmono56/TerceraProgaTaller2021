@@ -1,14 +1,15 @@
+################################################################################
 #librerías
 import tkinter
 from tkinter import messagebox
 import time
 import webbrowser
 
+#################################################################################
 #variables globales
 
 
-#gráficos
-
+#################################################################################
 #gráficos menú de inicio
 def menup():
     inicio=tkinter.Tk()
@@ -131,6 +132,8 @@ def jugar():
     pila=[]
     global cont
     cont=0
+    global tiempocorriendo
+    tiempocorriendo=True
     
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=0,column=0)
@@ -148,7 +151,7 @@ def jugar():
     nombre.grid(row=1,column=2)
 
     validar=tkinter.IntVar()
-    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,iniciarj,cargarj)])
+    bvalidar=tkinter.Checkbutton(juego,text="Validar nombre y jugar",variable=validar, onvalue=1, offvalue=0,command=lambda:[validaryjugar(validar,nombre,difi,iniciarj,cargarj,lhoras,lminutos,lsegundos,h,m,s)])
     bvalidar.grid(row=1,column=3)
 
     blanco=tkinter.Label(juego,text="     ")
@@ -468,34 +471,34 @@ def jugar():
     borrarjuego=tkinter.Button(juego,text="Borrar\n Juego",state="disable",bg="light blue",height="3",width="8",command=lambda:[fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25)])
     borrarjuego.grid(row=14,column=11)
 
-    top10=tkinter.Button(juego,text="Top\n 10",bg="yellow",height="3",width="7")
+    top10=tkinter.Button(juego,text="Top\n 10",bg="yellow",height="3",width="7",command=lambda:[top()])
     top10.grid(row=14,column=13)
 
     blanco=tkinter.Label(juego,text="     ")
     blanco.grid(row=15,column=0)
 
-    lhoras=tkinter.Label(juego,text="Horas")
+    lhoras=tkinter.Label(juego,text="")
     lhoras.grid(row=16,column=1)
 
-    lminutos=tkinter.Label(juego,text="Minutos")
+    lminutos=tkinter.Label(juego,text="")
     lminutos.grid(row=16,column=2)
 
-    lsegundos=tkinter.Label(juego,text="Segundos")
+    lsegundos=tkinter.Label(juego,text="")
     lsegundos.grid(row=16,column=3)
 
-    h=tkinter.Label(juego,text=00)
+    h=tkinter.Label(juego,text="")
     h.grid(row=17,column=1)
 
-    m=tkinter.Label(juego,text=00)
+    m=tkinter.Label(juego,text="")
     m.grid(row=17,column=2)
 
-    s=tkinter.Label(juego,text=00)
+    s=tkinter.Label(juego,text="")
     s.grid(row=17,column=3)
 
     guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11")
     guardarj.grid(row=17,column=9)
 
-    cargarj=tkinter.Button(juego,text="Cargar Juego",state="disable",height="2",width="11")
+    cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
     cargarj.grid(row=17,column=11)
 
 
@@ -508,9 +511,440 @@ def ayuda():
     archivo="manual_de_usuario_futoshiki.pdf"
     webbrowser.open_new(archivo)
 
+################################################################################
 #funciones auxiliares
+def activarhms(checktimer,entradah,entradam,entradas):
+    if checktimer.get() == 1:
+        entradah['state'] = "normal"
+        entradam['state'] = "normal"
+        entradas['state'] = "normal"
+    elif checktimer.get() == 0:
+        entradah['state'] = "disable"
+        entradam['state'] = "disable"
+        entradas['state'] = "disable"
+
+def guardarconfig(checkfacil,checkmedio,checkdificil,checktiemposi,checktiempono,checktimer,entradah,entradam,entradas,checkderecha,checkizquierda):
+
+    gfacil=checkfacil.get()
+    gmedio=checkmedio.get()
+    gdificil=checkdificil.get()
+    totalnivel=gfacil+gmedio+gdificil
+
+    if totalnivel==0:
+        messagebox.showerror("Error","Debe seleccionar una casilla en nivel")
+        return
+    elif totalnivel>1:
+        messagebox.showerror("Error","Debe seleccionar solo una casilla en nivel")
+        return
+
+    if gfacil==1:
+        dificultad=1
+    if gmedio==1:
+        dificultad=2
+    if gdificil==1:
+        dificultad=3
+        
+    gtsi=checktiemposi.get()
+    gtno=checktiempono.get()
+    gttimer=checktimer.get()
+    totaltiempo=gtsi+gtno+gttimer
+
+    if totaltiempo==0:
+        messagebox.showerror("Error","Debe seleccionar una casilla en tiempo")
+        return
+    elif totaltiempo>1:
+        messagebox.showerror("Error","Debe seleccionar solo una casilla en tiempo")
+        return
+    
+    if gtsi==1:
+        tiempo=1
+    if gtno==1:
+        tiempo=2
+        
+    ghoras=0
+    gminutos=0
+    gsegundos=0
+    
+    if gttimer==1:
+        tiempo=3
+        ghoras=entradah.get()
+        if ghoras=="":
+            ghoras=0
+        else:
+            if ghoras.isnumeric()==False or (int(ghoras)<0 or int(ghoras)>2):
+                messagebox.showerror("Error", "Las horas deben estar entre 0 y 2")
+                return
+            else:
+                ghoras=int(ghoras)
+        
+        gminutos=entradam.get()
+        if gminutos=="":
+            gminutos=0
+        else:
+            if gminutos.isnumeric()==False or (int(gminutos)<0 or int(gminutos)>60):
+                messagebox.showerror("Error", "Los minutos deben estar entre 0 y 60")
+                return
+            else:
+                gminutos=int(gminutos)
+        
+        gsegundos=entradas.get()
+        if gsegundos=="":
+            gsegundos=0
+        else:
+            if gsegundos.isnumeric()==False or (int(gsegundos)<0 or int(gsegundos)>60):
+                messagebox.showerror("Error", "Los segundos deben estar entre 0 y 60")
+                return
+            else:
+                gsegundos=int(gsegundos)
+                
+        if (ghoras+gminutos+gsegundos)==0:
+            messagebox.showerror("Error", "Debe digitar al menos un valor en el temporizador")
+            return
+        
+    gderecha=checkderecha.get()
+    gizquierda=checkizquierda.get()
+    glados=gderecha+gizquierda
+        
+    if glados==0:
+        messagebox.showerror("Error","Debe seleccionar una casilla en Posición del panel de dígitos")
+        return
+    elif glados>1:
+        messagebox.showerror("Error","Debe seleccionar solo una casilla en Posición del panel de dígitos")
+        return
+
+    if gderecha==1:
+        lado=1
+    if gizquierda==1:
+        lado=2
+
+    global listaconfig
+    listaconfig=[dificultad,tiempo,ghoras,gminutos,gsegundos,lado]
+
+def facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20):
+    
+    signof1.config(text="<")
+    signof6.config(text="<")
+    signoc2.config(text="^")
+    signoc4.config(text="^")
+    signoc10.config(text="v")
+    signoc13.config(text="v")
+    signoc14.config(text="^")
+    signoc18.config(text="v")
+    signoc19.config(text="v")
+    signoc20.config(text="^")
+    
+
+def medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19):
+
+    signof2.config(text="<")
+    signof3.config(text="<")
+    signof11.config(text=">")
+    signof19.config(text=">")
+    signof20.config(text="<")
+    signoc1.config(text="^")
+    signoc5.config(text="^")
+    signoc8.config(text="v")
+    signoc11.config(text="v")
+    signoc19.config(text="^")
 
 
+def dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20):
+    
+    signof9.config(text=">")
+    signof10.config(text=">")
+    signof11.config(text="<")
+    signof14.config(text="<")
+    signof17.config(text="<")
+    signof18.config(text="<")
+    signof19.config(text=">")
+    signoc1.config(text="v")
+    signoc2.config(text="^")
+    signoc4.config(text="^")
+    signoc5.config(text="^")
+    signoc8.config(text="^")
+    signoc19.config(text="v")
+    signoc20.config(text="^")
+
+
+def derecha(boton1d,boton2d,boton3d,boton4d,boton5d):
+    
+    boton1d.config(state="normal")
+    boton2d.config(state="normal")
+    boton3d.config(state="normal")
+    boton4d.config(state="normal")
+    boton5d.config(state="normal")
+
+def izquierda(boton1i,boton2i,boton3i,boton4i,boton5i):
+    
+    boton1i.config(state="normal")
+    boton2i.config(state="normal")
+    boton3i.config(state="normal")
+    boton4i.config(state="normal")
+    boton5i.config(state="normal")
+
+
+def validaryjugar(validar,nombre,difi,iniciarj,cargarj,lhoras,lminutos,lsegundos,h,m,s):
+
+    global listaconfig
+
+    if len(nombre.get())<1 or len(nombre.get())>20:
+        messagebox.showerror("Error","El largo del nombre debe estar entre 1 y 20 carácteres")
+        return
+
+    if validar.get()==1:
+        
+        dificultad=listaconfig[0]
+        tiempo=listaconfig[1]
+        
+        if dificultad==1:
+            difi.config(text="Nivel - Fácil")
+
+        elif dificultad==2:
+            difi.config(text="Nivel - Intermedio")
+
+        else:
+            difi.config(text="Nivel - Difícil")
+
+        iniciarj.config(state="normal")
+        cargarj.config(state="normal")
+
+        if tiempo!=2:
+            lhoras.config(text="Horas")
+            lminutos.config(text="Minutos")
+            lsegundos.config(text="Segundos")
+
+            if tiempo==1:
+                h.config(text="00")
+                m.config(text="00")
+                s.config(text="00")
+            else:
+                tiempo=listaconfig[1]
+                horaso=listaconfig[2]
+                minutoso=listaconfig[3]
+                segundoso=listaconfig[4]
+
+                ttotal = horaso*3600+ minutoso*60 + segundoso
+
+                segundos=ttotal%60
+                minutos=ttotal//60
+                horas=0
+                if minutos>60:
+                    horas=minutos//60
+                    minutos=minutos%60
+                    
+                h.config(text=horas)
+                m.config(text=minutos)
+                s.config(text=segundos)
+            
+        
+    elif validar.get()==0:
+        iniciarj.config(state="disable")
+        cargarj.config(state="disable")
+        lhoras.config(text="")
+        lminutos.config(text="")
+        lsegundos.config(text="")
+        h.config(text="")
+        m.config(text="")
+        s.config(text="")
+
+
+def temporizador(h,m,s,juego):
+    global listaconfig
+    global tiempocorriendo
+    tiempo=listaconfig[1]
+    horaso=listaconfig[2]
+    minutoso=listaconfig[3]
+    segundoso=listaconfig[4]
+
+    ttotal = horaso*3600+ minutoso*60 + segundoso
+    cttotal=ttotal
+
+    while tiempocorriendo==True and tiempo==3:
+        while ttotal!=-1:
+
+            segundos=ttotal%60
+            minutos=ttotal//60
+            horas=0
+            if minutos>60:
+                horas=minutos//60
+                minutos=minutos%60
+            
+            s.config(text=segundos)
+            m.config(text=minutos)
+            h.config(text=horas)
+
+            juego.update()
+            time.sleep(1)
+          
+            if ttotal==0:
+                s.config(text="ACABADO")
+                m.config(text="HA")
+                h.config(text="SE")
+
+                continuar=messagebox.askyesno("","Se ha acabado el tiempo, ¿desea continuar el juego?")
+
+                if continuar==True:
+                    tiempo=1
+                
+                elif continuar==False:
+                    tiempocorriendo=False
+                    juego.destroy()
+
+                else:
+                    messagebox.showwarning("Error", "Algo ocurrió mal")
+                    
+            ttotal=ttotal-1
+
+    while tiempocorriendo==True and tiempo==1:
+        
+        segundos=cttotal%60
+        minutos=cttotal//60
+        horas=0
+        if minutos>60:
+            horas=minutos//60
+            minutos=minutos%60
+        
+        s.config(text=segundos)
+        m.config(text=minutos)
+        h.config(text=horas)
+
+        juego.update()
+        time.sleep(1)
+
+        cttotal=cttotal+1
+            
+
+def iniciar(boton1d,boton2d,boton3d,boton4d,boton5d,boton1i,boton2i,boton3i,boton4i,boton5i,nombre,bvalidar,borrarjugada,terminarj,borrarjuego,guardarj,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20,iniciarj,cargarj):
+
+    global listaconfig
+
+    dificultad=listaconfig[0]
+        
+    if dificultad==1:
+        facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
+
+    elif dificultad==2:
+        medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19)
+        
+    else:
+        dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
+    
+    lado=listaconfig[5]
+
+    if lado==1:
+        derecha(boton1d,boton2d,boton3d,boton4d,boton5d)
+
+    else:
+        izquierda(boton1i,boton2i,boton3i,boton4i,boton5i)
+
+    nombre.config(state="disable")
+    bvalidar.config(state="disable")
+    borrarjugada.config(state="normal")
+    terminarj.config(state="normal")
+    borrarjuego.config(state="normal")
+    guardarj.config(state="normal")
+    iniciarj.config(state="disable")
+    cargarj.config(state="disable")
+
+
+def fborrarjugada():
+
+    global pila
+    global datos
+    global cont
+
+    if pila==[]:
+        messagebox.showerror("Error","No hay jugadas por borrar")
+        return
+
+    cont=cont-1
+    
+    entrada=datos[cont]
+    entrada.set("")
+
+    del(pila[-1])
+
+
+def agregar(cantidad):
+
+    global pila
+    global datos
+    global cont
+
+    if cont==25:
+        messagebox.showerror("Error","No se pueden agregar más números, puede borrar la última jugada")
+        return        
+
+    entrada=datos[cont]
+    entrada.set(cantidad)
+    
+    pila=pila+[cont]
+
+    cont=cont+1
+
+
+def terminarjuego(juego):
+
+    siono=messagebox.askyesno("","¿Desea terminar el juego y volver al menú principal?")
+
+    if siono==True:
+        global tiempocorriendo
+        tiempocorriendo=False
+        juego.destroy()
+
+    elif siono==False:
+        pass
+
+    else:
+        messagebox.showwarning("Error", "Algo ocurrió mal")
+
+
+def fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ventrada7,ventrada8,ventrada9,ventrada10,ventrada11,ventrada12,ventrada13,ventrada14,ventrada15,ventrada16,ventrada17,ventrada18,ventrada19,ventrada20,ventrada21,ventrada22,ventrada23,ventrada24,ventrada25):
+
+    siono=messagebox.askyesno("","¿Desea borrar su avance en este juego?")
+
+    if siono==True:
+        global pila
+        pila=[]
+        global cont
+        cont=0
+
+        ventrada1.set("")
+        ventrada2.set("")
+        ventrada3.set("")
+        ventrada4.set("")
+        ventrada5.set("")
+        ventrada6.set("")
+        ventrada7.set("")
+        ventrada8.set("")
+        ventrada9.set("")
+        ventrada10.set("")
+        ventrada11.set("")
+        ventrada12.set("")
+        ventrada13.set("")
+        ventrada14.set("")
+        ventrada15.set("")
+        ventrada16.set("")
+        ventrada17.set("")
+        ventrada18.set("")
+        ventrada19.set("")
+        ventrada20.set("")
+        ventrada21.set("")
+        ventrada22.set("")
+        ventrada23.set("")
+        ventrada24.set("")
+        ventrada25.set("")
+    
+        
+
+    elif siono==False:
+        pass
+
+    else:
+        messagebox.showwarning("Error", "Algo ocurrió mal")
+    
+def top():
+    messagebox.showerror("Error","Lo sentimos, estamos teniendo problemas con el servidor")
 
 
 
