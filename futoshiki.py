@@ -796,6 +796,7 @@ def temporizador(h,m,s,juego):
                 elif continuar==False:
                     tiempocorriendo=False
                     juego.destroy()
+                    menup()
 
                 else:
                     messagebox.showwarning("Error", "Algo ocurrió mal")
