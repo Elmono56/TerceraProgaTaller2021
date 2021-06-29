@@ -151,7 +151,8 @@ def jugar():
     diginombre=tkinter.Label(juego,text="Nombre del jugador:")
     diginombre.grid(row=1,column=1)
 
-    nombre=tkinter.Entry(juego)
+    nombrev=tkinter.StringVar()
+    nombre=tkinter.Entry(juego,textvariable=nombrev)
     nombre.grid(row=1,column=2)
 
     validar=tkinter.IntVar()
@@ -499,10 +500,10 @@ def jugar():
     s=tkinter.Label(juego,text="")
     s.grid(row=17,column=3)
 
-    guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11")
+    guardarj=tkinter.Button(juego,text="Guardar Juego",state="disable",height="2",width="11",command=lambda:[fguardarj(entrada)])
     guardarj.grid(row=17,column=9)
 
-    cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11")
+    cargarj=tkinter.Button(juego,text="Cargar Juego",height="2",width="11",command=lambda:[fcargarf(nombrev,iniciarj,difi,lhoras,lminutos,lsegundos,h,m,s,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20)])
     cargarj.grid(row=17,column=11)
 
 
@@ -955,6 +956,98 @@ def fborrarjuego(ventrada1,ventrada2,ventrada3,ventrada4,ventrada5,ventrada6,ven
 def top():
     messagebox.showerror("Error","Lo sentimos, estamos teniendo problemas con el servidor")
 
+def fguardarj(entrada):
+    global listaconfig
+    global cont
+    global pila
+    global partida
+    global tiempocorriendo
 
+    tiempocorriendo=False
+
+    partida=listaconfig[:]
+
+    dnombre=entrada.get()
+
+    partida=partida+[dnombre,cont]
+
+    partida=partida+pila
+
+    copia=cont
+
+def fcargarf(nombrev,iniciarj,difi,lhoras,lminutos,lsegundos,h,m,s,signof1,signof2,signof3,signof6,signof9,signof10,signof11,signof14,signof17,signof18,signof19,signof20,signoc1,signoc2,signoc4,signoc5,signoc8,signoc10,signoc11,signoc13,signoc14,signoc18,signoc19,signoc20):
+    global datos
+    global listaconfig
+    global cont
+    global pila
+    global partida
+
+    if partida==listaconfig:
+        messagebox.showerror("Error","No hay partidas guardadas")
+        return
+
+    listaconfig=partida[:6]
+
+    dificultad=listaconfig[0]
+    
+    tiempo=listaconfig[1]
+    
+    dnombre=partida[6]
+
+    cont=partida[7]
+
+    poner=partida[8:]
+
+    nombrev.set(dnombre)
+    
+    copia=0
+    
+    while copia!=cont:
+        
+        espacio=datos[copia]
+        numero=poner[copia]
+        espacio.set(numero)
+        copia=copia+1
+
+    iniciarj.config(state="normal")
+    
+    if dificultad==1:
+        difi.config(text="Nivel - Fácil")
+        facil(signof1,signof6,signoc2,signoc4,signoc10,signoc13,signoc14,signoc18,signoc19,signoc20)
+
+    elif dificultad==2:
+        difi.config(text="Nivel - Intermedio")
+        medio(signof2,signof3,signof11,signof19,signof20,signoc1,signoc5,signoc8,signoc11,signoc19)
+
+    else:
+        difi.config(text="Nivel - Difícil")
+        dificil(signof9,signof10,signof11,signof14,signof17,signof18,signof19,signoc1,signoc2,signoc4,signoc5,signoc8,signoc19,signoc20)
+
+    if tiempo!=2:
+        lhoras.config(text="Horas")
+        lminutos.config(text="Minutos")
+        lsegundos.config(text="Segundos")
+
+        if tiempo==1:
+            h.config(text="00")
+            m.config(text="00")
+            s.config(text="00")
+        else:
+            horaso=listaconfig[2]
+            minutoso=listaconfig[3]
+            segundoso=listaconfig[4]
+
+            ttotal = horaso*3600+ minutoso*60 + segundoso
+
+            segundos=ttotal%60
+            minutos=ttotal//60
+            horas=0
+            if minutos>60:
+                horas=minutos//60
+                minutos=minutos%60
+                
+            h.config(text=horas)
+            m.config(text=minutos)
+            s.config(text=segundos)
 
 menup()
